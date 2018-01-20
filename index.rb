@@ -8,13 +8,14 @@ class ScoreManagement
     def create
       puts '>Please enter the score'
       input = $stdin.gets
-      if input =~ /d/
+      if input !~ /^[0-9]+$/
         puts '>invalid input: not a number'
       elsif input.to_i > 100
         puts '>invalid input: less than 100'
       elsif input.to_i < 0
         puts '>invalid input: more than 0'
       else
+        write(input)
         puts '>Successfully created score'
       end
     end
@@ -31,9 +32,9 @@ class ScoreManagement
     def average
     end
 
-    def write
+    def write(num)
         File.open("scores.txt", "w") do |f|
-            f.puts score
+            f.puts num
         end
     end
 
