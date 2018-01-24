@@ -1,10 +1,5 @@
 class ScoreManagement
-    attr_accessor :score
-
-    def initialize(score)
-        @score = score
-    end
-
+  
     def create
       puts '>Please enter the score'
       input = $stdin.gets
@@ -29,8 +24,9 @@ class ScoreManagement
     def delete
       puts '>Please enter delete line number'
       input = $stdin.gets.to_i
+      File.open('scores.txt','w'){|file| file = nil} if score_array.count == 1
       score_array.select.with_index{|e, j| j != input - 1}.each_with_index do |num, k|
-        k == 0 ? write(num, 'w') : write(num, 'a')
+         k == 0 ? write(num, 'w') : write(num, 'a')
       end
       puts '>Successfully deleted score'
     end
@@ -49,12 +45,6 @@ class ScoreManagement
       File.read('scores.txt').gsub("\n",".").split('.').map{|x| x.to_i}.select.with_index{|e, i| i % 2 == 1}
     end
 
-    def action
-      create if ARGV[0] == "create"
-      read if ARGV[0] == "read"
-      delete if ARGV[0] == "delete"
-      average if ARGV[0] == "average"
-    end
 end
 
-ScoreManagement.new(15).action
+ScoreManagement.new.send(ARGV[0].to_sym)
