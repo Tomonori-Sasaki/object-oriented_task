@@ -1,5 +1,5 @@
 class ScoreManagement
-  
+
     def create
       puts '>Please enter the score'
       input = $stdin.gets
@@ -47,4 +47,4 @@ class ScoreManagement
 
 end
 
-ScoreManagement.new.send(ARGV[0].to_sym)
+ScoreManagement.new.send(ARGV[0])
