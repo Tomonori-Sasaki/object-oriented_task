@@ -1,5 +1,5 @@
 class ScoreManagement
-  
+
     def create
       puts '>Please enter the score'
       input = $stdin.gets
@@ -12,8 +12,8 @@ class ScoreManagement
       else
         write(input, 'a')
         puts '>Successfully created score'
-      end
     end
+  end
 
     def read
       File.open("scores.txt").each do |line|
